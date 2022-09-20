@@ -161,7 +161,7 @@ def cooking_process():
             'priority': order['priority']
         })
 
-        requests.post('http://localhost:8081/distribution', json=payload, timeout=0.0000000001)
+        requests.post('http://dinninghall:80/distribution', json=payload, timeout=0.0000000001)
         Orders.task_done()
     except Exception as e:
         pass
@@ -178,7 +178,7 @@ class Cook(Thread):
 
 
 def run_kitchen():
-    main_thread = threading.Thread(target=lambda: app.run(host='0.0.0.0', port=8080, debug=False, use_reloader=False),
+    main_thread = threading.Thread(target=lambda: app.run(host='0.0.0.0', port=80, debug=False, use_reloader=False),
                                    daemon=True)
     main_thread.start()
     print("Kitchen is running!")
