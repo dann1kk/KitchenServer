@@ -4,8 +4,8 @@ import time
 import requests
 from flask import Flask, request
 from threading import Thread
-from imports.Cooks import *
-from imports.Menu import *
+from Cooks import *
+from Menu import *
 
 threads = []
 Orders = queue.Queue()
