@@ -63,7 +63,7 @@ def cooking_process(cook, food_items: queue.Queue):
                         'cooking_time': finish_preparation_time - int(Orders[idx]['received_time']),
                         'cooking_details': list(Orders[idx]['cooking_details'].queue)
                     }
-                    requests.post('http://localhost:8080/distribution', json=payload, timeout=0.0000000001)
+                    requests.post('http://dinninghall:80/distribution', json=payload, timeout=0.0000000001)
 
             else:
                 food_items.put_nowait(food_item)
@@ -78,7 +78,7 @@ def cooks_multitasking_process(cook, food_items):
 
 
 def run_kitchen():
-    main_thread = threading.Thread(target=lambda: app.run(host='0.0.0.0', port=8081, debug=False, use_reloader=False),
+    main_thread = threading.Thread(target=lambda: app.run(host='0.0.0.0', port=80, debug=False, use_reloader=False),
                                    daemon=True)
     main_thread.start()
     print("Kitchen is running!")
